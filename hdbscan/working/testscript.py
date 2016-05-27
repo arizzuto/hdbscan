@@ -12,9 +12,12 @@ plot_kwds = {'alpha' : 0.5, 's' : 80, 'linewidths':0}
 moons, _ = data.make_moons(n_samples=50, noise=0.05)
 blobs, _ = data.make_blobs(n_samples=50, centers=[(-0.75,2.25), (1.0, 2.0)], cluster_std=0.25)
 test_data = np.vstack([moons, blobs])
+
+##plot the test data if you like
 #plt.scatter(test_data.T[0], test_data.T[1], color='b', **plot_kwds)
 #plt.show()
 
+##the mahalanobis distance covariance matrix (not inverted yet)
 ss = np.array([[1.0,0],[0.0,1.0]])
 clusterer = hdbscan.HDBSCAN(min_cluster_size=5, V=ss, metric='mahalanobis')
 clusterer.fit(test_data)
